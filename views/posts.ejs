@@ -1,0 +1,67 @@
+<%- include('layout/header') %>
+
+  <body>
+    <div class="menu-main-container">
+      <%- include('layout/menu') %>
+        <div class="container">
+          <% if (posts !='' ) { %>
+            <table id="categoryTable">
+              <thead>
+                <tr>
+                  <th>Nume</th>
+                  <th>Descriere</th>
+                  <th>Autorul</th>
+                  <th>categoria</th>
+                  <th>Postat la</th>
+                  <th>Editeaza</th>
+                  <th>Sterge</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% posts.forEach((row,index)=> { %>
+                  <tr id="row-<%= row._id %>">
+                    <td>
+                      <%= row.name %>
+                    </td>
+                    <td>
+                      <%= row.description %>
+                    </td>
+                    <td>
+                      <%= row.author %>
+                    </td>
+                    <td>
+                      <% if (row.category) { %>
+                        <%= row.category.name %>
+                          <% } else { %>
+                            No Category
+                            <% } %>
+                    </td>
+                    <td>
+                      <% const formattedDate=new Date(row.lastPost).toLocaleString(); %>
+
+                        <% if (formattedDate !="01.01.1970, 02:00:00" ) { %>
+                          <%= formattedDate %>
+                            <% } else { %>
+                              <%= 'DD.MM.YYYY, HH:MM:SS' %>
+                                <% } %>
+                    </td>
+                    <td>
+                      <a id="editIcon" href="edit/<%= row._id %>"><i class="fas fa-edit editIcon"></i></a>
+                    </td>
+                    <td>
+                      <a href="delete/<%= row._id %>"><i class="fas fa-trash deleteIcon"></i></a>
+                    </td>
+                  </tr>
+                  <% }) %>
+              </tbody>
+            </table>
+
+            <% } else { %>
+              <h1 class="noTable">No posts found in the database!</h1>
+              <% } %>
+                <%- include('layout/footer') %>
+        </div>
+        <div class="flex-balance">
+
+        </div>
+    </div>

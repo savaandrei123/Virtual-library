@@ -1,0 +1,15 @@
+<div class="menu">
+  <ul class="menu-ul">
+    <li><a href="/">Acasa</a></li>
+    <li><a href="/posts/add">Adauga carte</a></li>
+    <li><a class="no-animation">Categorii:</a></li>
+    <div class="right-menu">
+      <li><a href="/posts/">Toate</li>
+      <% categories.forEach(function(category) { %>
+        <li><a href="/posts/category/<%= category._id %>">
+            -<%= category.name %>
+          </a></li>
+        <% }) %>
+    </div>
+  </ul>
+</div>

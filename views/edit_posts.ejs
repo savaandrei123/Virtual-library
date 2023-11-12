@@ -1,0 +1,54 @@
+<%- include('layout/header') %>
+
+  <body>
+    <div class="menu-main-container">
+      <%- include('layout/menu') %>
+
+        <div class="form-container">
+          <h2 class="form-title">Editeaza cartea <%= posts.name %>
+          </h2>
+          <form action="/posts/update/<%= posts._id %>" method="post" id="add-form">
+            <div class="form-field">
+              <label for="name" class="form-label">Numele cartii:</label>
+              <input type="text" name="name" class="text-input" value="<%= posts.name %>" required />
+            </div>
+            <div class="form-field">
+              <label for="author" class="form-label">Autorul:</label>
+              <input type="text" name="author" class="text-input" value="<%= posts.author %>" required />
+            </div>
+            <div class="form-field">
+              <label for="description" class="form-label">Cum ti s-a parut?</label>
+              <textarea type="text" name="description" class="text-area" required><%= posts.description %></textarea>
+            </div>
+            <div class="form-field">
+              <label for="category" class="form-label">Categoria:</label>
+              <select name="category" class="select-input" required>
+                <option value="">-- Selectați o categorie --</option>
+                <% categories.forEach(function(category) { %>
+                  <option value="<%= category._id %>" <% if (category._id.toString()===posts.category.toString()) { %>
+                    selected<% } %>>
+                      <%= category.name %>
+                  </option>
+                  <% }); %>
+              </select>
+            </div>
+
+
+            <div class="form-field">
+              <input type="submit" name="submit" value="Editeaza cartea!" class="submit-btn" />
+            </div>
+          </form>
+        </div>
+        <div class="flex-balance">
+
+        </div>
+    </div>
+
+
+    <%- include('layout/footer') %>
+
+
+
+      <!-- <h5 class="text-light">Edit Category (<%# category.name %>)</h5> -->
+      <!-- <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter Name" -->
+      <!-- value="<%# category.name %>" required /> -->
