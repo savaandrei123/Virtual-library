@@ -128,16 +128,6 @@ ul.menu-ul li a:not(.no-animation):hover:before {
   padding: 8px;
 }
 
-#categoryTable th:nth-last-child(2),
-#categoryTable td:nth-last-child(2) {
-  width: 50px;
-}
-
-#categoryTable th:last-child,
-#categoryTable td:last-child {
-  width: 50px;
-}
-
 #categoryTable tr:nth-child(even) {
   background-color: #f2f2f2bb;
 }
@@ -210,7 +200,6 @@ ul.menu-ul li a:not(.no-animation):hover:before {
   border-radius: 10px;
   cursor: pointer;
   text-transform: uppercase;
-  margin-right: -20px;
   width: 110px;
   opacity: 0.9;
 }
@@ -284,4 +273,77 @@ ul.menu-ul li a:not(.no-animation):hover:before {
   font-size: 40px;
   color: red;
   font-weight: 700;
+}
+
+.home-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+
+
+}
+
+.home-page-btn {
+  --color: rgba(119, 60, 18, 0.683);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .5s;
+  border: none;
+  background-color: transparent;
+
+}
+
+.home-page-btn div {
+  letter-spacing: 2px;
+  font-weight: bold;
+  background: var(--color);
+  border-radius: 2rem;
+  color: black;
+  padding: 1rem;
+  font-size: 30px;
+}
+
+.home-page-btn::before {
+  content: '';
+  z-index: -1;
+  background-color: var(--color);
+  border: 2px solid black;
+  border-radius: 2rem;
+  width: 110%;
+  height: 100%;
+  position: absolute;
+  transform: rotate(10deg);
+  transition: .5s;
+  opacity: 0.2;
+}
+
+.home-page-btn:hover {
+  cursor: pointer;
+  filter: brightness(1.2);
+  transform: scale(1.1);
+}
+
+.home-page-btn:hover::before {
+  transform: rotate(0deg);
+  opacity: 1;
+}
+
+.home-page-btn svg {
+  transform: translateX(-200%);
+  transition: .5s;
+  width: 0;
+  opacity: 0;
+}
+
+.home-page-btn:hover svg {
+  width: 25px;
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.home-page-btn:active {
+  filter: brightness(1.4);
 }

@@ -30,6 +30,7 @@ postRouter.get('/add', async (req, res) => {
 postRouter.get('/', async (req, res) => {
   try {
     const posts = await Post.find().populate('category', 'name');
+
     const categories = await Category.find();
     res.render('posts', {
       title: 'Posts Page',

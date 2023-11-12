@@ -6,7 +6,7 @@ const categoryRouter = express.Router();
 categoryRouter.get('/', async (req, res) => {
   try {
     const categories = await Category.find();
-
+    const latestPosts = await Post.find().populate('category', 'name').sort({ lastPost: -1 }).limit(3);
     const newCategories = await Promise.all(categories.map(async (category) => {
       const postCount = await Post.countDocuments({ category: category._id });
       const lastPost = await Post.findOne({ category: category._id }).sort({ lastPost: -1 });
@@ -14,9 +14,10 @@ categoryRouter.get('/', async (req, res) => {
 
       return { ...category.toObject(), posts: postCount, lastPost: lastPostDate };
     }));
-    res.render('index', {
-      title: 'Home Page',
-      categories: newCategories
+    res.render('categories', {
+      title: 'Categories',
+      categories: newCategories,
+      latestPosts: latestPosts
     });
 
   } catch (err) {
@@ -30,7 +31,7 @@ categoryRouter.post('/add', async (req, res) => {
   });
   try {
     await category.save();
-    res.redirect("/");
+    res.redirect("/categories");
   } catch (err) {
     res.json({ message: err.message, type: 'danger' });
   }
@@ -45,7 +46,7 @@ categoryRouter.post('/update/:id', async (req, res) => {
       posts: req.body.posts,
     });
 
-    res.redirect("/");
+    res.redirect("/categories");
   } catch (err) {
     res.json({ message: err.message, type: 'danger' });
   }
@@ -58,13 +59,13 @@ categoryRouter.get('/delete/:id', async (req, res) => {
     const postsWithCategory = await Post.countDocuments({ category: id });
 
     if (postsWithCategory > 0) {
-      return res.redirect('/');
+      return res.redirect('/categories');
     } else {
       await Category.findByIdAndDelete(id);
-      res.redirect('/');
+      res.redirect('/categories');
     }
   } catch (err) {
-    res.redirect('/');
+    res.redirect('/categories');
   }
 });
 

@@ -4,7 +4,7 @@ function editCategory(categoryId, categoryName) {
   document.getElementById('upload-form').style.display = 'block';
 
   document.getElementById('upload-form').querySelector('input[name="name"]').value = categoryName;
-  document.getElementById('upload-form').action = '/update/' + categoryId;
+  document.getElementById('upload-form').action = '/categories/update/' + categoryId;
 }
 
 document.addEventListener("DOMContentLoaded", function () {

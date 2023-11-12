@@ -1,71 +1,20 @@
 <%- include('layout/header') %>
 
   <body>
-    <div class="menu-main-container">
-      <%- include('layout/menu') %>
-
-        <div class="container">
-
-          <% if (categories !='' ) { %>
-            <table id="categoryTable">
-              <thead>
-                <tr>
-                  <th>Categoria</th>
-                  <th>Nr. Carti</th>
-                  <th>Ultima Carte Adaugata</th>
-                  <th>Editeaza</th>
-                  <th>Sterge</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% categories.forEach((row,index)=> { %>
-                  <tr id="row-<%= row._id %>">
-                    <td>
-                      <%= row.name %>
-                    </td>
-                    <td>
-                      <%= row.posts %>
-                    </td>
-                    <td>
-                      <% const formattedDate=new Date(row.lastPost).toLocaleString(); %>
-
-                        <% if (formattedDate !="01.01.1970, 02:00:00" ) { %>
-                          <%= formattedDate %>
-                            <% } else { %>
-                              <%= ' ' %>
-                                <% } %>
-                    </td>
-                    <td>
-                      <button onclick="editCategory('<%= row._id %>', '<%= row.name %>')" id="editIcon"><i
-                          class="fas fa-edit editIcon"></i></button>
-                    </td>
-                    <td>
-                      <a href="/delete/<%= row._id %>"><i class="fas fa-trash deleteIcon"></i></a>
-                    </td>
-                  </tr>
-                  <% }) %>
-              </tbody>
-            </table>
-            <% } else { %>
-              <h1 class="noTable">No categories found in the database!</h1>
-              <% } %>
-
-                <form action="/add" method="post" id="add-form">
-                  <div class="add-container">
-                    <input type="name" name="name" class="add-input" placeholder="Numele categoriei:" required />
-                    <input type="submit" name="submit" class="send-btn" value="ADAUGA" />
-                  </div>
-                </form>
-
-                <form action="/update" method="post" id="upload-form" class="hide">
-                  <div class="add-container">
-                    <input type="name" name="name" class="add-input" placeholder="sss" required />
-                    <input type="submit" name="submit" class="send-btn" value="EDITEAZA" />
-                  </div>
-                </form>
-        </div>
-        <div class="flex-balance">
-
-        </div>
+    <div class="home-page-container">
+      <button class="home-page-btn" onclick="window.location='/categories/';">
+        <div>INCEPE-TI CALATORIA CULINARA!</div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
+          <path d="M11.6801 14.62L14.2401 12.06L11.6801 9.5" stroke="black" stroke-width="2" stroke-miterlimit="10"
+            stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M4 12.0601H14.17" stroke="black" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+            stroke-linejoin="round"></path>
+          <path d="M12 4C16.42 4 20 7 20 12C20 17 16.42 20 12 20" stroke="black" stroke-width="2" stroke-miterlimit="10"
+            stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
     </div>
+
+
+
     <%- include('layout/footer') %>

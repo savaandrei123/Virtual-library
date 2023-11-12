@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
+import indexRouter from './routes/index_route.js';
 import categoryRouter from './routes/categories_route.js';
 import postRouter from './routes/posts_route.js';
 
@@ -26,7 +27,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-app.use('/', categoryRouter)
+app.use('/', indexRouter)
+app.use('/categories/', categoryRouter)
 app.use('/posts/', postRouter)
 
 const PORT = process.env.PORT;
