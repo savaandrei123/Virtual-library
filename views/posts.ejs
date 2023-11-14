@@ -1,20 +1,20 @@
 <%- include('layout/header') %>
 
   <body>
-    <div class="menu-main-container">
+    <div class="main-container">
       <%- include('layout/menu') %>
         <div class="container">
           <% if (posts !='' ) { %>
-            <table id="categoryTable">
+            <table class="table posts-table">
               <thead>
                 <tr>
                   <th>Nume</th>
-                  <th>Descriere</th>
+                  <th class="width-100">Nota</th>
                   <th>Autorul</th>
-                  <th>categoria</th>
-                  <th>Postat la</th>
-                  <th>Editeaza</th>
-                  <th>Sterge</th>
+                  <th>Categoria</th>
+                  <th class="width-200">Postat la data de</th>
+                  <th class="width-100">Editeaza</th>
+                  <th class="width-100">Sterge</th>
                 </tr>
               </thead>
               <tbody>
@@ -23,8 +23,8 @@
                     <td>
                       <%= row.name %>
                     </td>
-                    <td>
-                      <%= row.description %>
+                    <td class="width-100">
+                      <%= row.rating %>
                     </td>
                     <td>
                       <%= row.author %>
@@ -36,19 +36,19 @@
                             No Category
                             <% } %>
                     </td>
-                    <td>
+                    <td class="width-200">
                       <% const formattedDate=new Date(row.lastPost).toLocaleString(); %>
 
                         <% if (formattedDate !="01.01.1970, 02:00:00" ) { %>
                           <%= formattedDate %>
                             <% } else { %>
-                              <%= 'DD.MM.YYYY, HH:MM:SS' %>
+                              <%= ' ' %>
                                 <% } %>
                     </td>
-                    <td>
-                      <a id="editIcon" href="/posts/edit/<%= row._id %>"><i class="fas fa-edit editIcon"></i></a>
+                    <td class="width-100">
+                      <a class="edit-icon" href="/posts/edit/<%= row._id %>"><i class="fas fa-edit editIcon"></i></a>
                     </td>
-                    <td>
+                    <td class="width-100">
                       <a href="/posts/delete/<%= row._id %>"><i class="fas fa-trash deleteIcon"></i></a>
                     </td>
                   </tr>
@@ -57,7 +57,7 @@
             </table>
 
             <% } else { %>
-              <h1 class="noTable">No posts found in the database!</h1>
+              <img class="overlay-image no-table-warning" src="/images/posts_replace.png" alt="Nici o carte gasita!">
               <% } %>
                 <%- include('layout/footer') %>
         </div>

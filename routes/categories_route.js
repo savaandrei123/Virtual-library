@@ -17,7 +17,7 @@ categoryRouter.get('/', async (req, res) => {
     res.render('categories', {
       title: 'Categories',
       categories: newCategories,
-      latestPosts: latestPosts
+      latestPosts: latestPosts,
     });
 
   } catch (err) {

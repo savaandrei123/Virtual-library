@@ -7,7 +7,7 @@ const postRouter = express.Router();
 postRouter.post('/add', async (req, res) => {
   const post = new Post({
     name: req.body.name,
-    description: req.body.description,
+    rating: req.body.rating,
     category: req.body.category,
     author: req.body.author,
   });
@@ -88,7 +88,7 @@ postRouter.post('/update/:id', async (req, res) => {
     const id = req.params.id;
     await Post.findByIdAndUpdate(id, {
       name: req.body.name,
-      description: req.body.description,
+      rating: req.body.rating,
       category: req.body.category,
       author: req.body.author,
     });

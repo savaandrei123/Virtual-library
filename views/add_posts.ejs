@@ -1,23 +1,24 @@
 <%- include('layout/header') %>
 
   <body>
-    <div class="menu-main-container">
+    <div class="main-container">
       <%- include('layout/menu') %>
 
         <div class="form-container">
-          <h2 class="form-title">Adauga o carte citita</h2>
+          <h2 class="form-title">Adauga o carte</h2>
           <form action="/posts/add" method="post" id="add-form">
             <div class="form-field">
               <label for="name" class="form-label">Numele cartii:</label>
-              <input type="text" name="name" class="text-input" required />
+              <input type="text" name="name" class="text-input" maxlength="80" required />
             </div>
             <div class="form-field">
               <label for="author" class="form-label">Autorul:</label>
-              <input type="text" name="author" class="text-input" required />
+              <input type="text" name="author" class="text-input" maxlength="80" required />
             </div>
             <div class="form-field">
-              <label for="description" class="form-label">Cum ti s-a parut?</label>
-              <textarea type="text" name="description" class="text-area" required></textarea>
+              <label for="rating" class="form-label">De la 1 la 10 cum ti s-a parut?</label>
+              <input type="range" name="rating" min="1" max="10" value="5" class="rating-input" required />
+              <div class="rating-value" id="rating-value">Nota: 5</div>
             </div>
             <div class="form-field">
               <label for="category" class="form-label">Categoria:</label>
@@ -30,10 +31,8 @@
                   <% }); %>
               </select>
             </div>
-
-
             <div class="form-field">
-              <input type="submit" name="submit" value="Adaugare postarea!" class="submit-btn" />
+              <input type="submit" name="submit" value="Adauga Carte!" class="submit-btn" />
             </div>
           </form>
         </div>

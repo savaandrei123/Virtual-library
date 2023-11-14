@@ -1,20 +1,20 @@
 <%- include('layout/header') %>
 
   <body>
-    <div class="menu-main-container">
+    <div class="main-container">
       <%- include('layout/menu') %>
 
         <div class="container">
 
           <% if (categories !='' ) { %>
-            <table id="categoryTable">
+            <table class="table">
               <thead>
                 <tr>
                   <th>Categoria</th>
-                  <th>Nr. Carti</th>
-                  <th>Ultima Carte Adaugata</th>
-                  <th>Editeaza</th>
-                  <th>Stergere</th>
+                  <th class="width-150">Nr. Carti</th>
+                  <th class="width-250">Ultima Carte Adaugata</th>
+                  <th class="width-150">Editeaza</th>
+                  <th class="width-150">Stergere</th>
                 </tr>
               </thead>
               <tbody>
@@ -23,10 +23,10 @@
                     <td>
                       <%= row.name %>
                     </td>
-                    <td>
+                    <td class="width-150">
                       <%= row.posts %>
                     </td>
-                    <td>
+                    <td class="width-250">
                       <% const formattedDate=new Date(row.lastPost).toLocaleString(); %>
 
                         <% if (formattedDate !="01.01.1970, 02:00:00" ) { %>
@@ -35,11 +35,11 @@
                               <%= ' ' %>
                                 <% } %>
                     </td>
-                    <td>
-                      <button onclick="editCategory('<%= row._id %>', '<%= row.name %>')" id="editIcon"><i
+                    <td class="width-150">
+                      <button onclick="editCategory('<%= row._id %>', '<%= row.name %>')" class="edit-icon"><i
                           class="fas fa-edit editIcon"></i></button>
                     </td>
-                    <td>
+                    <td class="width-150">
                       <a href="/categories/delete/<%= row._id %>"><i class="fas fa-trash deleteIcon"></i></a>
                     </td>
                   </tr>
@@ -47,65 +47,70 @@
               </tbody>
             </table>
             <% } else { %>
-              <h1 class="noTable">No categories found in the database!</h1>
+              <img class="overlay-image" src="/images/categories_replace.png" alt="No categories">
               <% } %>
 
                 <form action="/categories/add" method="post" id="add-form">
-                  <div class="add-container">
-                    <input type="name" name="name" class="add-input" placeholder="Numele categoriei:" required />
+                  <div class="insert-category-container">
+                    <input type="name" name="name" class="add-input" maxlength="15" placeholder="Numele categoriei:"
+                      required />
                     <input type="submit" name="submit" class="send-btn" value="ADAUGA" />
                   </div>
                 </form>
 
                 <form action="/update" method="post" id="upload-form" class="hide">
-                  <div class="add-container">
-                    <input type="name" name="name" class="add-input" placeholder="sss" required />
+                  <div class="insert-category-container">
+                    <input type="name" name="name" class="add-input" maxlength="15" placeholder="sss" required />
                     <input type="submit" name="submit" class="send-btn" value="EDITEAZA" />
                   </div>
                 </form>
-                <br><br><br><br>
-                <h1 class="title">Ultimele 3 postari</h1>
+                <br>
                 <% if (latestPosts !='' ) { %>
-                  <table id="categoryTable">
+                  <h1 class="title">Ultimele 3 carti adaugate:</h1>
+
+                  <table class="table">
                     <thead>
                       <tr>
                         <th>Nume</th>
-                        <th>Descriere</th>
+                        <th class="width-100">Nota</th>
                         <th>Autorul</th>
                         <th>categoria</th>
-                        <th>Postat la</th>
+                        <th class="width-200">Postat la data de</th>
                       </tr>
                     </thead>
-                    <% latestPosts.forEach((row,index)=> { %>
-                      <tr id="row-<%= row._id %>">
-                        <td>
-                          <%= row.name %>
-                        </td>
-                        <td>
-                          <%= row.description %>
-                        </td>
-                        <td>
-                          <%= row.author %>
-                        </td>
-                        <td>
-                          <% if (row.category) { %>
-                            <%= row.category.name %>
-                              <% } else { %>
-                                No Category
-                                <% } %>
-                        </td>
-                        <td>
-                          <% const formattedDate=new Date(row.lastPost).toLocaleString(); %>
-
-                            <% if (formattedDate !="01.01.1970, 02:00:00" ) { %>
-                              <%= formattedDate %>
+                    <tbody>
+                      <% latestPosts.forEach((row,index)=> { %>
+                        <tr id="row-<%= row._id %>">
+                          <td>
+                            <%= row.name %>
+                          </td>
+                          <td class="width-100">
+                            <%= row.rating %>
+                          </td>
+                          <td>
+                            <%= row.author %>
+                          </td>
+                          <td>
+                            <% if (row.category) { %>
+                              <%= row.category.name %>
                                 <% } else { %>
-                                  <%= 'DD.MM.YYYY, HH:MM:SS' %>
-                                    <% } %>
-                        </td>
-                      </tr>
-                      <% }) %>
+                                  No Category
+                                  <% } %>
+                          </td>
+                          <td class="width-200">
+                            <% const formattedDate=new Date(row.lastPost).toLocaleString(); %>
+
+                              <% if (formattedDate !="01.01.1970, 02:00:00" ) { %>
+                                <%= formattedDate %>
+                                  <% } else { %>
+                                    <%= ' ' %>
+                                      <% } %>
+                          </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
                   </table>
+                  <br><br><br><br>
                   <% } else { %>
 
                     <% } %>

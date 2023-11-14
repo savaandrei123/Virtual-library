@@ -1,7 +1,7 @@
 <%- include('layout/header') %>
 
   <body>
-    <div class="menu-main-container">
+    <div class="main-container">
       <%- include('layout/menu') %>
 
         <div class="form-container">
@@ -10,15 +10,18 @@
           <form action="/posts/update/<%= posts._id %>" method="post" id="add-form">
             <div class="form-field">
               <label for="name" class="form-label">Numele cartii:</label>
-              <input type="text" name="name" class="text-input" value="<%= posts.name %>" required />
+              <input type="text" name="name" class="text-input" value="<%= posts.name %>" maxlength="80" required />
             </div>
             <div class="form-field">
               <label for="author" class="form-label">Autorul:</label>
-              <input type="text" name="author" class="text-input" value="<%= posts.author %>" required />
+              <input type="text" name="author" class="text-input" value="<%= posts.author %>" maxlength="80" required />
             </div>
             <div class="form-field">
-              <label for="description" class="form-label">Cum ti s-a parut?</label>
-              <textarea type="text" name="description" class="text-area" required><%= posts.description %></textarea>
+              <label for="rating" class="form-label">De la 1 la 10 cum ti s-a parut?</label>
+              <input type="range" name="rating" min="1" max="10" value="<%= posts.rating %>" class="rating-input"
+                required />
+              <div class="rating-value" id="rating-value">Nota: <%= posts.rating %>
+              </div>
             </div>
             <div class="form-field">
               <label for="category" class="form-label">Categoria:</label>

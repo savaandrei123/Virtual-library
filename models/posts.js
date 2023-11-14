@@ -6,8 +6,8 @@ const postSchema = new mongoose.Schema({
     required: true,
     index: true,
   },
-  description: {
-    type: String,
+  rating: {
+    type: Number,
     required: true,
   },
   author: {

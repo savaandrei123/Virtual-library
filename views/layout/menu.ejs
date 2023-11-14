@@ -1,9 +1,9 @@
-<div class="menu">
-  <ul class="menu-ul">
+<ul class="menu">
+  <% if (categories !='' ) { %>
     <li><a href="/categories/">Acasa</a></li>
-    <li><a href="/posts/add">Adauga carte</a></li>
-    <li><a class="no-animation">Categorii:</a></li>
-    <div class="right-menu">
+
+    <li><a class="no-animation">Carti:</a></li>
+    <div class="secondary-menu">
       <li><a href="/posts/">Toate</a></li>
       <% categories.forEach(function(category) { %>
         <li><a href="/posts/category/<%= category._id %>">
@@ -11,5 +11,7 @@
           </a></li>
         <% }) %>
     </div>
-  </ul>
-</div>
+    <li><a href="/posts/add">Adauga carte</a></li>
+    <% } else { %>
+      <% } %>
+</ul>
