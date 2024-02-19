@@ -1,4 +1,4 @@
-# Book Library Web Application
+# Virtual library Web Application
 
 ## About the Project
 
