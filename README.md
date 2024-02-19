@@ -2,7 +2,7 @@
 
 ## About the Project
 
-This repository hosts the source code for "Book-Library," a web-based platform tailored for book lovers. It's a virtual space where users can curate their personal book collections, add their latest reads, categorize books as desired, and rate them on a scale of 1 to 10. Leveraging a powerful tech stack, this project employs MongoDB, Node.js, JavaScript, HTML, CSS, and EJS to deliver a seamless and enriching user experience.
+This project represents a dynamic virtual space designed for book enthusiasts. It allows users to meticulously curate their personal book collections, seamlessly add their latest reads, categorize books according to their preferences, and rate them on a comprehensive scale of 1 to 10.
 
 ## Features
 
